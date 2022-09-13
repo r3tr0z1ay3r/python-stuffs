@@ -1,0 +1,56 @@
+Algorithm:
+
+Step 1
+Step 2: We create a adjacency matrix to represnt a graph with the vertices being 5
+Step 3: We create a list to save all the selected edges for the MST to be formed
+Step 4: We intialise a variable to make sure that the edges joined is less than the vertex 
+Step 5: The first element of the selected list is update to the value True
+Step 6: A while loop is intialised with the edge variable being lower than vertex as condition
+Step 7: Three variables are intialised with two having 0 as value and one having inf as value
+Step 8: A for loop is created with i as control variable with range of vertex
+Step 9: Another nested loop with control variable j is executed if the selected edge of index i is True
+Step 10: If the element of selected list of index j and if there is a element in g[i][j] the next step is exectued or is skipped
+Step 11: The minimum is compared with the matrix element, If the minimum is greater than the matrix element minimum is updated to the matrix element
+Step 12: The values of x and y are also updated and to i and j respectively
+Step 13: The edge with its weight is printed and the edge at y is updated to true in the selected list
+Step 14: The value of the edge variable is incremented by 1 and the loop is repeated until failure of condition
+Step 15: STOP
+
+Code:
+
+
+INF = 9999999
+V = 5
+G = [[0, 9, 75, 0, 0],
+     [9, 0, 95, 19, 42],
+     [75, 95, 0, 51, 66],
+     [0, 19, 51, 0, 31],
+     [0, 42, 66, 31, 0]]
+selected = [0, 0, 0, 0, 0]
+no_edge = 0
+selected[0] = True
+print("Edge\t\t: \t\tWeight\n")
+while (no_edge < V - 1):
+    minimum = INF
+    x = 0
+    y = 0
+    for i in range(V):
+        if selected[i]:
+            for j in range(V):
+                if ((not selected[j]) and G[i][j]):  
+                    if minimum > G[i][j]:
+                        minimum = G[i][j]
+                        x = i
+                        y = j
+    print(str(x) + "-" + str(y) + "\t\t:\t\t" + str(G[x][y]))
+    selected[y] = True
+    no_edge += 1
+
+Output:
+
+Edge            :               Weight
+
+0-1             :               9
+1-3             :               19
+3-4             :               31
+3-2             :               51

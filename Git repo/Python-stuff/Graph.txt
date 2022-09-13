@@ -1,0 +1,39 @@
+Algorithm:
+
+Step 1: Start
+Step 2: We create a class to save the graph into by the use of a dictionary represention of graph
+Step 3: We create a function named dfs for depth first search with the graph and the vertex to start on and a set of visited set to None by default
+Step 4: If visited is given as none we create a set for it and the start element given to it
+Step 5: We print the element in the start and intiate a for loop in dict from the set of start element in the graph removing the visited element from it
+Step 6: We do a recursive call of the function with its parameters being the control variable for start the same parameters for rest as given
+Step 7: After execution of the loop we return the set visited which will contain the path of all the elements we traversed
+Step 8: Stop
+
+Code:
+
+class graph:
+   def __init__(self,gdict=None):
+      if gdict is None:
+         gdict = {}
+      self.gdict = gdict
+def dfs(graph, start, visited = None):
+   if visited is None:
+      visited = set()
+   visited.add(start)
+   print(start,"=>",end=" ")
+   for next in graph[start] - visited:
+      dfs(graph, next, visited)
+   return visited
+
+gdict = { 
+   "a" : set(["b","c"]),
+   "b" : set(["a", "d"]),
+   "c" : set(["a", "d"]),
+   "d" : set(["e"]),
+   "e" : set(["a"])
+}
+dfs(gdict, 'a')
+
+Output:
+
+a => c => d => e => b =>
